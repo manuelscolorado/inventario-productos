@@ -1,35 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="ui container">
         <h1>Crear Producto</h1>
-        <form action="{{ route('productos.store') }}" method="POST">
+        <form action="{{ route('productos.store') }}" method="POST" class="ui form">
             @csrf
-            <div class="form-group">
+            <div class="field">
                 <label for="stockid">Stock ID</label>
                 <input type="text" name="stockid" id="stockid" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="field">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="field">
                 <label for="descripcion">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
             </div>
-            <div class="form-group">
+            <div class="field">
                 <label for="cantidad">Cantidad</label>
                 <input type="number" name="cantidad" id="cantidad" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="field">
                 <label for="precio">Precio</label>
                 <input type="number" step="0.01" name="precio" id="precio" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="field">
                 <label for="costo">Costo</label>
                 <input type="number" step="0.01" name="costo" id="costo" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="ui green button">Guardar</button>
         </form>
     </div>
 @endsection

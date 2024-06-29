@@ -3,10 +3,15 @@
 @section('title', 'Lista de Productos')
 
 @section('content')
-    <div class="container">
+    <div class="ui container">
         <h1>Lista de Productos</h1>
-        <a href="{{ route('productos.create') }}" class="btn btn-primary">Crear Producto</a>
-        <table class="table table-bordered mt-3">
+        <a href="{{ route('productos.create') }}" class="" style="color: whitesmoke">
+            <button class="ui positive button">
+                <i class="plus circle icon"></i>
+                Crear Producto
+            </button>
+        </a>
+        <table class="ui celled table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,12 +35,26 @@
                         <td>{{ $producto->precio }}</td>
                         <td>{{ $producto->costo }}</td>
                         <td>
-                            <a href="{{ route('productos.show', $producto->id) }}" class="btn btn-info">Ver</a>
-                            <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('productos.show', $producto->id) }}" class="" style="color: whitesmoke">
+                                <button class="ui teal icon button" data-content="Ver">
+                                    <i class="eye icon"></i>
+                                    {{-- Ver --}}
+                                </button>
+                            </a>
+                            <a href="{{ route('productos.edit', $producto->id) }}" class="" style="color: whitesmoke">
+                                <button class="ui blue icon button">
+                                    <i class="edit icon"></i>
+                                    {{-- Editar --}}
+                                </button>
+                            </a>
+                            <form action="{{ route('productos.destroy', $producto->id) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="ui negative icon button">
+                                    <i class="trash icon"></i>
+                                    {{-- Eliminar --}}
+                                </button>
                             </form>
                         </td>
                     </tr>
