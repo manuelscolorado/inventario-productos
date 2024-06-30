@@ -25,7 +25,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         /* 
-        * se validan los campos y que el stockid sea unico 
+        * se validan los campos del cuerpo de la peticion
         */
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string',
