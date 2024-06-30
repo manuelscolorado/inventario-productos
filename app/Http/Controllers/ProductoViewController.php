@@ -31,9 +31,9 @@ class ProductoViewController extends Controller
         return view('productos.index', compact('productos'));
     }
 
-    public function show($id)
+    public function show($stockid)
     {
-        $response = $this->client->get("api/productos/{$id}");
+        $response = $this->client->get("api/productos/{$stockid}");
         $producto = json_decode($response->getBody()->getContents());
 
         return view('productos.show', compact('producto'));
@@ -77,10 +77,10 @@ class ProductoViewController extends Controller
         return view('productos.edit', compact('producto'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $stockid)
     {
         try {
-            $response = $this->client->put('api/productos/' . $id, [
+            $response = $this->client->put('api/productos/' . $stockid, [
                 'json' => $request->all()
             ]);
     
@@ -91,7 +91,7 @@ class ProductoViewController extends Controller
     
             if ($statusCode == 400) {
                 $errorMessage = json_decode($response->getBody()->getContents(), true)['message'];
-                return redirect()->route('productos.edit', $id)
+                return redirect()->route('productos.edit', $stockid)
                     ->withInput($request->all())
                     ->with([
                         'error' => true,
@@ -101,9 +101,9 @@ class ProductoViewController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($stockid)
     {
-        $this->client->delete("api/productos/{$id}");
+        $this->client->delete("api/productos/{$stockid}");
 
         return redirect()->route('productos.index');
     }

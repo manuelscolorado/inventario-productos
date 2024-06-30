@@ -14,7 +14,6 @@
         <table class="ui celled table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Stock ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
@@ -27,7 +26,6 @@
             <tbody>
                 @foreach ($productos as $producto)
                     <tr>
-                        <td>{{ $producto->id }}</td>
                         <td>{{ $producto->stockid }}</td>
                         <td>{{ $producto->nombre }}</td>
                         <td>{{ $producto->descripcion }}</td>
@@ -35,19 +33,19 @@
                         <td>{{ $producto->precio }}</td>
                         <td>{{ $producto->costo }}</td>
                         <td>
-                            <a href="{{ route('productos.show', $producto->id) }}" class="" style="color: whitesmoke">
+                            <a href="{{ route('productos.show', $producto->stockid) }}" class="" style="color: whitesmoke">
                                 <button class="ui teal icon button" data-content="Ver">
                                     <i class="eye icon"></i>
                                     {{-- Ver --}}
                                 </button>
                             </a>
-                            <a href="{{ route('productos.edit', $producto->id) }}" class="" style="color: whitesmoke">
+                            <a href="{{ route('productos.edit', $producto->stockid) }}" class="" style="color: whitesmoke">
                                 <button class="ui blue icon button">
                                     <i class="edit icon"></i>
                                     {{-- Editar --}}
                                 </button>
                             </a>
-                            <form action="{{ route('productos.destroy', $producto->id) }}" method="POST"
+                            <form action="{{ route('productos.destroy', $producto->stockid) }}" method="POST"
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')

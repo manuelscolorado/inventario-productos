@@ -16,7 +16,7 @@ class CreateProductosTable extends Migration
         if (!Schema::hasTable('productos')) {
             Schema::create('productos', function (Blueprint $table) {
                 $table->id();
-                $table->string('stockid');
+                $table->string('stockid')->unique();;
                 $table->string('nombre');
                 $table->text('descripcion')->nullable();
                 $table->integer('cantidad');

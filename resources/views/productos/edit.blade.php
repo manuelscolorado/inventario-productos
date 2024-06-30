@@ -3,16 +3,9 @@
 @section('content')
     <div class="ui container">
         <h1>Editar Producto</h1>
-        <form action="{{ route('productos.update', $producto->id) }}" method="POST" class="ui form">
+        <form action="{{ route('productos.update', $producto->stockid) }}" method="POST" class="ui form">
             @csrf
             @method('PUT')
-            <div class="field">
-                <label for="stockid">Stock ID</label>
-                <input type="text" name="stockid" id="stockid" class="form-control" required value="{{ old('stockid', $producto->stockid) }}">
-                @if (session('error'))
-                    <div class="ui pointing red basic label">{{ session('message') }}</div>
-                @endif
-            </div>
             <div class="field">
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required value="{{ old('nombre', $producto->nombre) }}">
