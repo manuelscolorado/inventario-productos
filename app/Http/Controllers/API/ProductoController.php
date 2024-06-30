@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
+    /*
+    * La principal función de esta API
+    * es procesar las peticiones y
+    * devolver datos, status y/o mensajes de error
+    * para ser utilizados en el front y hacer validaciones
+    */
     public function index()
     {
         $productos = Producto::all();

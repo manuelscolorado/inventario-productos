@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class ProductoViewController extends Controller
 {
     private $client;
+
+    /*
+    * La principal función de tener esta clase
+    * es tener un controlador que maneje las peticiones
+    * y devuelva una vista, consumiendo la API internamente
+    */
 
     public function __construct()
     {
@@ -39,11 +46,27 @@ class ProductoViewController extends Controller
 
     public function store(Request $request)
     {
-        $response = $this->client->post('api/productos', [
-            'json' => $request->all()
-        ]);
+        try {
+            $response = $this->client->post('api/productos', [
+                'json' => $request->all()
+            ]);
 
-        return redirect()->route('productos.index');
+            return redirect()->route('productos.index');
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode == 400) {
+                $errorMessage = json_decode($response->getBody()->getContents(), true)['message'];
+                return redirect()->route('productos.create')
+                    ->withInput($request->all())
+                    ->with([
+                        'error' => true,
+                        'message' => 'StockId ya existe.',
+                        'old' => $request->all()
+                    ]);
+            }
+        }
     }
 
     public function edit($id)
@@ -56,11 +79,26 @@ class ProductoViewController extends Controller
 
     public function update(Request $request, $id)
     {
-        $response = $this->client->put("api/productos/{$id}", [
-            'json' => $request->all()
-        ]);
-
-        return redirect()->route('productos.index');
+        try {
+            $response = $this->client->put('api/productos/' . $id, [
+                'json' => $request->all()
+            ]);
+    
+            return redirect()->route('productos.index');
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $statusCode = $response->getStatusCode();
+    
+            if ($statusCode == 400) {
+                $errorMessage = json_decode($response->getBody()->getContents(), true)['message'];
+                return redirect()->route('productos.edit', $id)
+                    ->withInput($request->all())
+                    ->with([
+                        'error' => true,
+                        'message' => 'StockId ya existe.',
+                    ]);
+            }
+        }
     }
 
     public function destroy($id)
