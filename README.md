@@ -223,4 +223,4 @@ Si el estado es `400`, la API devolverá un JSON como este:
 
 # Colecciones de Postman
 
-[Inventario Productos.postman_collection.json](API%20-%20Inventario%20de%20Productos%20ec3e72096642430bbb23e1f57b82a952/Inventario_Productos.postman_collection.json)
+[Inventario Productos.postman_collection.json](https://file.notion.so/f/f/6106ee94-373a-4d40-8ff1-d315a1a6398f/2dd78972-f2da-4b4e-8e5a-7de93afd27cb/Inventario_Productos.postman_collection.json?table=block&id=52758db4-6bcc-4dc0-889e-77137ea34b9a&spaceId=6106ee94-373a-4d40-8ff1-d315a1a6398f&expirationTimestamp=1723147200000&signature=6Awl6Y6nFG4HY19xcNSFKe1jYJkchfBpRghwVNHUELI&downloadName=Inventario+Productos.postman_collection.json)
